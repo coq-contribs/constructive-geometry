@@ -6,4 +6,3 @@ part1.v
 orthogonality.v
 basis.v
 affinity.v
- 
