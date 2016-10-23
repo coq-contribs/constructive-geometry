@@ -59,7 +59,7 @@ intros H' H'0 H'1.
 generalize (el_ax (Seg a (pt x) H'1) (line1 x) (line2 x)); simpl in |- *.
 cut (DiLn (line1 x) (line2 x)).
 tauto.
-elim x; auto with v62.
+elim x; auto.
 Qed.
 
 Theorem thm4_1d :
@@ -80,23 +80,23 @@ Theorem Symmetry_of_Apart :
  Apart (origin y) (ln x) \/ Apart (extremity y) (ln x).
 intros x y H'.
 apply thm4_1a.
-apply sym_DiLn; auto with v62.
+apply sym_DiLn; auto.
 Qed.
 
 Theorem thm4_3a :
  forall (x : Segment) (c : Point), Apart c (ln x) -> DiPt c (origin x).
 Proof.
 intros x c H'.
-elim (cmp_apt_dipt c (origin x) (ln x)); trivial with v62.
-intro H0; elim (inc_ln1 x); trivial with v62.
+elim (cmp_apt_dipt c (origin x) (ln x)); trivial.
+intro H0; elim (inc_ln1 x); trivial.
 Qed.
 
 Theorem thm4_3b :
  forall (x : Segment) (c : Point), Apart c (ln x) -> DiPt c (extremity x).
 Proof.
 intros x c H'.
-elim (cmp_apt_dipt c (extremity x) (ln x)); trivial with v62.
-intro H0; elim (inc_ln2 x); trivial with v62.
+elim (cmp_apt_dipt c (extremity x) (ln x)); trivial.
+intro H0; elim (inc_ln2 x); trivial.
 Qed.
 
 Definition Side1 : Triangle -> Segment.
@@ -104,7 +104,7 @@ Proof.
 intro H'; elim H'; clear H'.
 intros summit base H'.
 apply (Seg summit (origin base)).
-apply thm4_3a; trivial with v62.
+apply thm4_3a; trivial.
 Defined.
 
 Definition Side2 : Triangle -> Segment.
@@ -112,27 +112,27 @@ Proof.
 intro H'; elim H'; clear H'.
 intros summit base H'.
 apply (Seg summit (extremity base)).
-apply thm4_3b; trivial with v62.
+apply thm4_3b; trivial.
 Defined.
 
 Theorem auxs1 : forall t : Triangle, origin (base t) = extremity (Side1 t).
 Proof.
-intro t; elim t; auto with v62.
+intro t; elim t; auto.
 Qed.
 
 Theorem auxs2 : forall t : Triangle, extremity (base t) = extremity (Side2 t).
 Proof.
-intro t; elim t; auto with v62.
+intro t; elim t; auto.
 Qed.
 
 Theorem auxs3 : forall t : Triangle, summit t = origin (Side1 t).
 Proof.
-intro t; elim t; auto with v62.
+intro t; elim t; auto.
 Qed.
 
 Theorem auxs4 : forall t : Triangle, summit t = origin (Side2 t).
 Proof.
-intro t; elim t; auto with v62.
+intro t; elim t; auto.
 Qed.
 
 Theorem thm4_3c : forall t : Triangle, DiLn (ln (base t)) (ln (Side1 t)).
@@ -140,7 +140,7 @@ Proof.
 intro H'; elim H'; clear H'.
 intros summit base Tri_cond.
 elim (cmp_apt_diln summit (ln base) (ln (Side1 (Tri summit base Tri_cond))));
- auto with v62.
+ auto.
 Qed.
 
 Theorem thm4_3d : forall t : Triangle, DiLn (ln (base t)) (ln (Side2 t)).
@@ -148,7 +148,7 @@ Proof.
 intro H'; elim H'; clear H'.
 intros summit base Tri_cond.
 elim (cmp_apt_diln summit (ln base) (ln (Side2 (Tri summit base Tri_cond))));
- auto with v62.
+ auto.
 Qed.
 
 Hint Resolve thm4_3c thm4_3d.

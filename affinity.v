@@ -70,14 +70,14 @@ intros H'3 H'4 H'5.
 red in H'5.
 assert (H'8 := H'5 (par m a) m l); lapply H'8;
  [ intro H'9; lapply H'9; [ intro H'10; clear H'9 H'8 | clear H'9 H'8 ]
- | clear H'8 ]; auto with v62.
+ | clear H'8 ]; auto.
 red in |- *; red in |- *; red in |- *; intro H'6.
 lapply (constructive_uniqueness_for_parallels l (par m a) a);
  [ intro H'11 | assumption ].
 elim H'11;
  [ intro H'; elim H'; [ idtac | intro H'7; clear H' H'11 ] | idtac ];
- auto with v62.
-elim (Ax1_ii m a); auto with v62.
+ auto.
+elim (Ax1_ii m a); auto.
 Qed.
 Hint Resolve thm7_1.
 
@@ -88,9 +88,9 @@ Proof.
 elim equiv_EqLn.
 intros H' H'0 H'1 l m a H'2 H'3 H'4.
 unfold Transitive at 1 in H'1.
-apply H'1 with (y := par m a); auto with v62.
+apply H'1 with (y := par m a); auto.
 apply H'0.
-elim equiv_Par; auto with v62.
+elim equiv_Par; auto.
 Qed.
 
 Theorem thm7_4 :
@@ -98,10 +98,10 @@ Theorem thm7_4 :
  Apart a l -> Incident a m -> Incident a n -> Par n l -> Par m l -> EqLn m n.
 Proof.
 intros l m n a H' H'0 H'1 H'2 H'3; try assumption.
-apply thm7_3 with (a := a); auto with v62.
+apply thm7_3 with (a := a); auto.
 elim equiv_Par.
 intros H'4 H'5 H'6; red in H'6.
-apply H'6 with (y := l); auto with v62.
+apply H'6 with (y := l); auto.
 Qed.
 
 Theorem DiLn_qimp_con :
@@ -111,7 +111,7 @@ Proof.
 unfold Incident, Negation in |- *.
 intros l m H' H'0; elim H'0; intros b E; elim E; intros H'1 H'2; clear E H'0.
 lapply (constructive_uniqueness_for_parallels l m b);
- [ intro H'5 | trivial with v62 ].
+ [ intro H'5 | trivial ].
 tauto.
 Qed.
 
@@ -119,15 +119,15 @@ Theorem strict_parallel :
  forall (a : Point) (l : Line), Apart a l -> DiLn l (par l a).
 Proof.
 intros a l H'.
-lapply (cmp_apt_diln a l (par l a)); [ intro H'3 | trivial with v62 ].
-elim H'3; [ trivial with v62 | intro H'0; clear H'3 ].
-elim (Ax1_ii l a); auto with v62.
+lapply (cmp_apt_diln a l (par l a)); [ intro H'3 | trivial ].
+elim H'3; [ trivial | intro H'0; clear H'3 ].
+elim (Ax1_ii l a); auto.
 Qed.
 Hint Resolve strict_parallel.
 
 Theorem spar : forall (a : Point) (l : Line), Apart a l -> SPar l (par l a).
 Proof.
-intros a l H'; red in |- *; auto with v62.
+intros a l H'; red in |- *; auto.
 Qed.
 Hint Resolve spar.
 
