@@ -82,7 +82,7 @@ Theorem Uniqueness_of_orthogonality :
  forall (l m : Line) (a : Point), Incident a l /\ Ort l m -> EqLn l (ort m a).
 Proof.
 intros l m a H'; elim H'; intros H'0 H'1; clear H'.
-apply O4' with (n := m) (a := a); auto with v62.
+apply O4' with (n := m) (a := a); auto.
 Qed.
 
 Theorem Unort_reflexive : Reflexive Line Unort.
@@ -90,9 +90,9 @@ Proof.
 red in |- *.
 intro l.
 generalize (O1 l l); intro H'.
-elim H'; [ intro H'0; clear H' | trivial with v62 ].
+elim H'; [ intro H'0; clear H' | trivial ].
 elim apart_con.
-intro H'; elim (H' l); auto with v62.
+intro H'; elim (H' l); auto.
 Qed.
 
 Theorem cmp_unort_con :
@@ -100,11 +100,11 @@ Theorem cmp_unort_con :
 Proof.
 intros l m n H'.
 generalize (O1 m n); intro H'1.
-elim H'1; [ intro H'0; clear H'1 | auto with v62 ].
+elim H'1; [ intro H'0; clear H'1 | auto ].
 elim apart_con.
 intros H'1 H'2; red in H'2.
 lapply (H'2 m n l); [ intro H'6 | assumption ].
-elim H'6; [ intro H'3; clear H'6 | auto with v62 ].
+elim H'6; [ intro H'3; clear H'6 | auto ].
 generalize O2.
 intro H'4; red in H'4.
 lapply (H'4 l m n); intuition.
@@ -114,7 +114,7 @@ Theorem cmp_unort_diln :
  forall l m n : Line, Unort l m -> DiLn l n \/ Unort m n.
 Proof.
 intros l m n H'.
-lapply (cmp_unort_con l m n); [ intro H'3 | assumption ]; auto with v62.
+lapply (cmp_unort_con l m n); [ intro H'3 | assumption ]; auto.
 intuition.
 Qed.
 
@@ -123,12 +123,12 @@ Proof.
 unfold Symmetric at 1 in |- *.
 intros l m H'.
 lapply (cmp_unort_con l m l);
- [ intro H'3; elim H'3; [ intro H'4; clear H'3 | trivial with v62 ] | idtac ];
- auto with v62.
-cut (Irreflexive Line ConLn); auto with v62.
+ [ intro H'3; elim H'3; [ intro H'4; clear H'3 | trivial ] | idtac ];
+ auto.
+cut (Irreflexive Line ConLn); auto.
 intro H'0; red in H'0.
-elim (H'0 l); auto with v62.
-elim apart_con; auto with v62.
+elim (H'0 l); auto.
+elim apart_con; auto.
 Qed.
 
 Theorem thm8_6 : forall l m n : Line, ConLn l m -> Unort l n \/ Unort m n.
@@ -137,7 +137,7 @@ intros l m n H'.
 lapply (Convergent_imp_distinct l m); [ intro H'2 | assumption ].
 lapply (constructive_uniqueness_for_orthogonals l m n (pt (Twol l m H')));
  [ intro H'5 | assumption ].
-elim H'5; [ intro H'0; clear H'5 | trivial with v62 ].
+elim H'5; [ intro H'0; clear H'5 | trivial ].
 generalize (inc_pt1 (Twol l m H')); generalize (inc_pt2 (Twol l m H')).
 simpl in |- *; unfold Incident, Negation in |- *; tauto.
 Qed.
@@ -158,7 +158,7 @@ Qed.
 Theorem ort_ort_like_par_i :
  forall (l : Line) (a : Point), Incident a (ort (ort l a) a).
 Proof.
-auto with v62.
+auto.
 Qed.
 
 Theorem thm8_8 :
@@ -166,7 +166,7 @@ Theorem thm8_8 :
  Incident b (ort l a) -> EqLn (ort l a) (ort l b).
 Proof.
 intros l a b H'.
-apply O4' with (n := l) (a := b); auto with v62.
+apply O4' with (n := l) (a := b); auto.
 Qed.
 
 Section delicate.
@@ -187,7 +187,7 @@ lapply (Convergent_imp_distinct l (ort (ort l a) a));
 lapply (thm8_8 (ort l a) a b); [ intro H'6 | assumption ].
 lapply (cong_eqln_diln l (ort (ort l a) a) (ort (ort l a) b));
  [ intro H'7; lapply H'7; [ intro H'8; clear H'7 | clear H'7 ] | idtac ];
- auto with v62.
+ auto.
 lapply
  (constructive_uniqueness_for_orthogonals l (ort (ort l a) b) (ort l a) b);
  [ intro H'9 | assumption ].
@@ -195,13 +195,13 @@ elim H'9;
  [ intro H'2; elim H'2;
     [ intro H'3; clear H'2 H'9 | intro H'3; clear H'2 H'9 ]
  | intro H'2; clear H'9 ].
-unfold b at 1 in H'3; elim H'0; auto with v62.
-elim (O3_ii (ort l a) b); auto with v62.
+unfold b at 1 in H'3; elim H'0; auto.
+elim (O3_ii (ort l a) b); auto.
 generalize Unort_symmetric.
 intro H'; red in H'.
 elim H'2; (intro H'3; clear H'2).
-elim (O3_i l a); auto with v62.
-elim (O3_i (ort l a) b); auto with v62.
+elim (O3_i l a); auto.
+elim (O3_i (ort l a) b); auto.
 Qed.
 
 End delicate.
@@ -209,14 +209,14 @@ End delicate.
 Theorem thm8_9 : forall (l : Line) (a : Point), Par l (ort (ort l a) a).
 Proof.
 intros l a; unfold Par, Negation in |- *.
-red in |- *; intro H'; apply (thm8_9_aux a l); trivial with v62.
+red in |- *; intro H'; apply (thm8_9_aux a l); trivial.
 Qed.
 Hint Resolve thm8_9.
 
 Theorem thm8_10 :
  forall (l : Line) (a : Point), EqLn (par l a) (ort (ort l a) a).
 Proof.
-intros l a; apply sym_EqLn; auto with v62.
+intros l a; apply sym_EqLn; auto.
 Qed.
 
 
