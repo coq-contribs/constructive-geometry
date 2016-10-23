@@ -47,7 +47,7 @@ Theorem Sym_imp_NegSym :
  forall (U : Set) (R : Relation U),
  Symmetric U R -> Symmetric U (Negation U R).
 unfold Symmetric, Negation in |- *.
-intros U R H' x y H'0; red in |- *; intro H'1; auto with v62.
+intros U R H' x y H'0; red in |- *; intro H'1; auto.
 Qed.
 Hint Resolve Sym_imp_NegSym.
 
@@ -86,24 +86,24 @@ Proof.
 intros U R H'; elim H'.
 intros H'0 H'1; red in |- *.
 intros x y H'2; red in H'1.
-elim (H'1 x y x); trivial with v62.
-intro H'3; elim (H'0 x); trivial with v62.
+elim (H'1 x y x); trivial.
+intro H'3; elim (H'0 x); trivial.
 Qed.
 Hint Resolve Apart_imp_Sym.
 
 Theorem sym_DiPt : forall x y : Point, DiPt x y -> DiPt y x.
 Proof.
-intros x y H'; cut (Symmetric Point DiPt); auto with v62.
+intros x y H'; cut (Symmetric Point DiPt); auto.
 Qed.
 
 Theorem sym_DiLn : forall x y : Line, DiLn x y -> DiLn y x.
 Proof.
-intros x y H'; cut (Symmetric Line DiLn); auto with v62.
+intros x y H'; cut (Symmetric Line DiLn); auto.
 Qed.
 
 Theorem sym_ConLn : forall x y : Line, ConLn x y -> ConLn y x.
 Proof.
-intros x y H'; cut (Symmetric Line ConLn); auto with v62.
+intros x y H'; cut (Symmetric Line ConLn); auto.
 Qed.
 Hint Immediate sym_DiPt sym_DiLn sym_ConLn.
 
@@ -112,12 +112,12 @@ Theorem Neg_apart_equiv :
  Apartness U R -> Equivalence U (Negation U R).
 Proof.
 intros U R H'; elim H'.
-constructor 1; auto with v62.
+constructor 1; auto.
 unfold Transitive, Negation in |- *.
 intros x y z H'2 H'3; red in |- *; intro H'4.
 red in H0.
-elim (H0 x z y); auto with v62.
-cut (Symmetric U R); auto with v62.
+elim (H0 x z y); auto.
+cut (Symmetric U R); auto.
 Qed.
 Hint Resolve Neg_apart_equiv.
 
@@ -129,38 +129,38 @@ Definition Par := Negation Line ConLn.
 
 Theorem equiv_EqPt : Equivalence Point EqPt.
 Proof.
-unfold EqPt in |- *; auto with v62.
+unfold EqPt in |- *; auto.
 Qed.
 Hint Resolve equiv_EqPt.
 
 Theorem equiv_EqLn : Equivalence Line EqLn.
 Proof.
-unfold EqLn in |- *; auto with v62.
+unfold EqLn in |- *; auto.
 Qed.
 Hint Resolve equiv_EqLn.
 
 Theorem equiv_Par : Equivalence Line Par.
 Proof.
-unfold Par in |- *; auto with v62.
+unfold Par in |- *; auto.
 Qed.
 Hint Resolve equiv_Par.
 
 Theorem sym_EqPt : forall x y : Point, EqPt x y -> EqPt y x.
 Proof.
-intros x y H'; cut (Symmetric Point EqPt); auto with v62.
-unfold EqPt at 1 in |- *; auto with v62.
+intros x y H'; cut (Symmetric Point EqPt); auto.
+unfold EqPt at 1 in |- *; auto.
 Qed.
 
 Theorem sym_EqLn : forall x y : Line, EqLn x y -> EqLn y x.
 Proof.
-intros x y H'; cut (Symmetric Line EqLn); auto with v62.
-unfold EqLn at 1 in |- *; auto with v62.
+intros x y H'; cut (Symmetric Line EqLn); auto.
+unfold EqLn at 1 in |- *; auto.
 Qed.
 
 Theorem sym_Par : forall x y : Line, Par x y -> Par y x.
 Proof.
-intros x y H'; cut (Symmetric Line Par); auto with v62.
-unfold Par at 1 in |- *; auto with v62.
+intros x y H'; cut (Symmetric Line Par); auto.
+unfold Par at 1 in |- *; auto.
 Qed.
 Hint Immediate sym_EqPt sym_EqLn sym_Par.
 
